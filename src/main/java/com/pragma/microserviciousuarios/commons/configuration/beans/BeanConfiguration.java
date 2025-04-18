@@ -1,0 +1,29 @@
+package com.pragma.microserviciousuarios.commons.configuration.beans;
+
+import com.pragma.microserviciousuarios.domain.ports.in.UserServicePort;
+import com.pragma.microserviciousuarios.domain.ports.out.UserPersistencePort;
+import com.pragma.microserviciousuarios.domain.usecases.UserUseCase;
+import com.pragma.microserviciousuarios.infrastructure.adapter.persistence.UserPersistenceAdapter;
+import com.pragma.microserviciousuarios.infrastructure.mappers.UserEntityMapper;
+import com.pragma.microserviciousuarios.infrastructure.repositories.mysql.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@RequiredArgsConstructor
+public class BeanConfiguration {
+    private final UserRepository userRepository;
+    private final UserEntityMapper userEntityMapper;
+
+    // User
+    @Bean
+    public UserServicePort userServicePort() {
+        return new UserUseCase(userPersistencePort());
+    }
+    @Bean
+    public UserPersistencePort userPersistencePort() {
+        return new UserPersistenceAdapter(userRepository, userEntityMapper);
+    }
+
+}

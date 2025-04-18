@@ -3,12 +3,10 @@ package com.pragma.microserviciousuarios.infrastructure.repositories.mysql;
 import com.pragma.microserviciousuarios.infrastructure.entities.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Optional;
+
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
-    //UserEntity findByEmail(String email);
 
-    //UserEntity findByDocumentNumber(String documentNumber);
+    Optional<UserEntity> findByEmail(String email);
 
-    //UserEntity findByPhone(String phone);
-
-    //UserEntity findByIdAndRolEntityId(Long id, Long rolId);
 }

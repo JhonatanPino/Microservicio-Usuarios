@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -15,16 +17,15 @@ public class UserEntity {
     private Long id;
     private String name;
     private String lastName;
-    private String documentType;
     private String documentNumber;
     private String phone;
-    private String birthDate;
+    private LocalDate birthDate;
     private String email;
     private String password;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "rol_id", nullable = false)
-    private RolEntity rolEntity;
+    @JoinColumn(name = "role_id", nullable = false)
+    private RoleEntity roleEntity;
 
 }
 
