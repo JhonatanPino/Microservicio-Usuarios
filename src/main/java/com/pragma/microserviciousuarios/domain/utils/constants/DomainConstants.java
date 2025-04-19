@@ -1,7 +1,5 @@
 package com.pragma.microserviciousuarios.domain.utils.constants;
 
-import java.util.regex.Pattern;
-
 public class DomainConstants {
     // User Validation messages
     public static final String USER_FIELD_NAME_NULL_MESSAGE = "Field 'name' of user can not be null";

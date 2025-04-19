@@ -4,12 +4,15 @@ import com.pragma.microserviciousuarios.domain.exceptions.UserAlreadyExistsExcep
 import com.pragma.microserviciousuarios.domain.models.UserModel;
 import com.pragma.microserviciousuarios.domain.ports.in.UserServicePort;
 import com.pragma.microserviciousuarios.domain.ports.out.UserPersistencePort;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class UserUseCase implements UserServicePort {
     private final UserPersistencePort userPersistencePort;
+    private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserUseCase(UserPersistencePort userPersistencePort) {
+    public UserUseCase(UserPersistencePort userPersistencePort, BCryptPasswordEncoder passwordEncoder) {
         this.userPersistencePort = userPersistencePort;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -19,6 +22,9 @@ public class UserUseCase implements UserServicePort {
         if (user != null) {
             throw new UserAlreadyExistsException();
         }
+
+        userModel.setPassword(passwordEncoder.encode(userModel.getPassword()));
+
         userPersistencePort.saveUser(userModel);
     }
 

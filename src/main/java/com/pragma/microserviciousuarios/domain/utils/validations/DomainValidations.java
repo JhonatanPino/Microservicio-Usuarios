@@ -11,22 +11,9 @@ public class DomainValidations {
     private static final String EMAIL_REGEX = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$";
     private static final Pattern EMAIL_PATTERN = Pattern.compile(EMAIL_REGEX);
 
-    // Password encryption using BCrypt
-    /*private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
-    public static String encryptPassword(String password) {
-        if (password == null || password.isBlank()) {
-            throw new IllegalArgumentException("La contraseña no puede ser nula o vacía");
-        }
-        return encoder.encode(password);
-    }*/
-
     // Validations fields not Null and empty
-    public static void isNullOrBlankValidation(Long id, String name, String lastName, String documentNumber,
-                                               String phone, LocalDate birthDate, String email, String password, RoleModel role){
-        if (id == null || id.toString().isBlank()){
-            throw new EmptyFieldException();
-        }
+    public static void isNullOrBlankValidationC(Long id, String name, String lastName, String documentNumber,
+                                                String phone, LocalDate birthDate, String email, String password, RoleModel role){
         if (name == null || name.isBlank()){
             throw new EmptyFieldException();
         }
@@ -48,17 +35,17 @@ public class DomainValidations {
         if (password == null || password.isBlank()){
             throw new EmptyFieldException();
         }
-        if (role.getId() == null || role.getId().toString().isBlank()){
+        if (role == null || role.getId() == null || role.getId().toString().isBlank()) {
             throw new IdCannotBeNullException();
         }
     }
     //Validation for metods setters
-    public static void isNullOrBlankValidation(String field){
+    public static void isNullOrBlankValidationS(String field){
         if (field == null || field.isBlank()){
             throw new EmptyFieldException();
         }
     }
-    public static void isNullOrBlankValidation(RoleModel role){
+    public static void isNullOrBlankValidationI(RoleModel role){
         if (role == null || role.toString().isBlank()){
             throw new IdCannotBeNullException();
         }
@@ -73,7 +60,7 @@ public class DomainValidations {
     }
     // Validation for phone
     public static void isValidPhoneValidation(String phone) {
-        boolean isValid = phone.matches("\\+573\\d{9} | 3\\d{9}");
+        boolean isValid = phone.matches("\\+?\\d{7,12}");
         if (!isValid) {
             throw new UserInvalidPhoneException();
         }

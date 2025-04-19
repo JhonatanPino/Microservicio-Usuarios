@@ -9,6 +9,7 @@ import com.pragma.microserviciousuarios.infrastructure.repositories.mysql.UserRe
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @RequiredArgsConstructor
@@ -16,14 +17,19 @@ public class BeanConfiguration {
     private final UserRepository userRepository;
     private final UserEntityMapper userEntityMapper;
 
+
     // User
     @Bean
     public UserServicePort userServicePort() {
-        return new UserUseCase(userPersistencePort());
+        return new UserUseCase(userPersistencePort(), passwordEncoder());
     }
     @Bean
     public UserPersistencePort userPersistencePort() {
         return new UserPersistenceAdapter(userRepository, userEntityMapper);
+    }
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
 }

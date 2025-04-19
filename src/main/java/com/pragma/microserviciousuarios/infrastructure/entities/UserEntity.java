@@ -25,7 +25,7 @@ public class UserEntity {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id", nullable = false)
-    private RoleEntity roleEntity;
+    private RoleEntity role;
 
 }
 

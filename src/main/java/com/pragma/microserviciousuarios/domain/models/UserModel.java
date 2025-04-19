@@ -21,7 +21,7 @@ public class UserModel {
     public UserModel(Long id, String name, String lastName, String documentNumber,
                      String phone, LocalDate birthDate, String email, String password, RoleModel role) {
 
-        isNullOrBlankValidation(id, name, lastName, documentNumber, phone, birthDate, email, password, role);
+        isNullOrBlankValidationC(id, name, lastName, documentNumber, phone, birthDate, email, password, role);
         isValidDocumentNumberValidation(documentNumber);
         isValidPhoneValidation(phone);
         isAdultValidation(birthDate);
@@ -67,38 +67,38 @@ public class UserModel {
     }
 
     public void setName(String name) {
-        isNullOrBlankValidation(name);
+        isNullOrBlankValidationS(name);
         this.name = Objects.requireNonNull(name, DomainConstants.USER_FIELD_NAME_NULL_MESSAGE);
     }
     public void setLastName(String lastName) {
-        isNullOrBlankValidation(lastName);
+        isNullOrBlankValidationS(lastName);
         this.lastName = Objects.requireNonNull(lastName, DomainConstants.USER_FIELD_LAST_NAME_NULL_MESSAGE);
     }
     public void setDocumentNumber(String documentNumber) {
-        isNullOrBlankValidation(documentNumber);
+        isNullOrBlankValidationS(documentNumber);
         isValidDocumentNumberValidation(documentNumber);
         this.documentNumber = Objects.requireNonNull(documentNumber, DomainConstants.USER_FIELD_DOCUMENT_NUMBER_NULL_MESSAGE);
     }
     public void setPhone(String phone) {
-        isNullOrBlankValidation(phone);
+        isNullOrBlankValidationS(phone);
         isValidPhoneValidation(phone);
         this.phone = Objects.requireNonNull(phone, DomainConstants.USER_FIELD_PHONE_NULL_MESSAGE);
     }
     public void setBirthDate(LocalDate birthDate) {
-        isNullOrBlankValidation(birthDate.toString());
+        isNullOrBlankValidationS(birthDate.toString());
         isAdultValidation(birthDate);
         this.birthDate = Objects.requireNonNull(birthDate, DomainConstants.USER_FIELD_BIRTH_DATE_NULL_MESSAGE);
     }
     public void setEmail(String email) {
-        isNullOrBlankValidation(email);
+        isNullOrBlankValidationS(email);
         this.email = Objects.requireNonNull(email, DomainConstants.USER_FIELD_EMAIL_NULL_MESSAGE);
     }
     public void setPassword(String password) {
-        isNullOrBlankValidation(password);
+        isNullOrBlankValidationS(password);
         this.password = Objects.requireNonNull(password, DomainConstants.USER_FIELD_PASSWORD_NULL_MESSAGE);
     }
     public void setRole(RoleModel role) {
-        isNullOrBlankValidation(role);
+        isNullOrBlankValidationI(role);
         this.role = Objects.requireNonNull(role, DomainConstants.USER_FIELD_ROLE_NULL_MESSAGE);
     }
     public void setId(Long id) { this.id = id; }

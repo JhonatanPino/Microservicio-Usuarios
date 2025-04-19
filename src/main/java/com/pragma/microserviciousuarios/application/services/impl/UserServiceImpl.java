@@ -14,8 +14,8 @@ import java.time.LocalDateTime;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-    private final UserDtoMapper userDtoMapper;
     private final UserServicePort userServicePort;
+    private final UserDtoMapper userDtoMapper;
 
     @Override
     public SaveUserResponse saveUser(SaveUserRequest request) {

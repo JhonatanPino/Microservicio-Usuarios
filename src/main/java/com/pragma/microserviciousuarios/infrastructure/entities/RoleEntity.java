@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -16,6 +19,9 @@ public class RoleEntity {
     private Long id;
     private String name;
     private String description;
+
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
+    private Set<UserEntity> users = new HashSet<>();
 
 }
 
