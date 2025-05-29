@@ -1,10 +1,5 @@
 package com.pragma.microserviciousuarios.domain.models;
 
-import com.pragma.microserviciousuarios.domain.exceptions.EmptyFieldException;
-import com.pragma.microserviciousuarios.domain.exceptions.IdCannotBeNullException;
-import com.pragma.microserviciousuarios.domain.exceptions.UserInvalidPhoneException;
-import com.pragma.microserviciousuarios.domain.exceptions.UserMinorException;
-import com.pragma.microserviciousuarios.domain.utils.constants.DomainConstants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -148,7 +143,4 @@ class UserModelTest {
         userModel.setRole(newRole);
         assertEquals(newRole, userModel.getRole());
     }
-
-
-
 }

@@ -7,4 +7,6 @@ public interface UserPersistencePort {
     void saveUser(UserModel userModel);
 
     UserModel getUserByEmail(String userEmail);
+
+    UserModel getUserByIdentification(String identification);
 }
