@@ -6,7 +6,8 @@ import com.pragma.microserviciousuarios.domain.models.UserModel;
 import com.pragma.microserviciousuarios.domain.ports.out.UserPersistencePort;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDate;

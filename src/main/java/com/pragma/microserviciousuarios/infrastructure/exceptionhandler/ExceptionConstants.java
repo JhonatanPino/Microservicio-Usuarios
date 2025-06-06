@@ -9,7 +9,10 @@ public class ExceptionConstants {
     public static final String USER_INVALID_EMAIL_MESSAGE = "Invalid email format";
 
     // General
-    //public static final String INVALID_PAGE_OR_SIZE = "Page and size must be greater than or equal to 0";
     public static final String FIELD_CANNOT_EMPTY_MESSAGE = "The field cannot be empty";
     public static final String ID_CANNOT_BE_NULL_MESSAGE = "The ID cannot be null";
+
+    // Authentication
+    public static final String INVALID_CREDENTIALS_MESSAGE = "Invalid credentials";
+
 }

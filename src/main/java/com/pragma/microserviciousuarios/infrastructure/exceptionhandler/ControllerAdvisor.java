@@ -54,6 +54,13 @@ public class ControllerAdvisor {
                 LocalDateTime.now()));
     }
 
+    // Authentication
+    @ExceptionHandler(InvalidCredentialsException.class)
+    public ResponseEntity<ExceptionResponse> handleInvalidCredentialsException(InvalidCredentialsException exception) {
+        return ResponseEntity.badRequest().body(new ExceptionResponse(ExceptionConstants.INVALID_CREDENTIALS_MESSAGE,
+                LocalDateTime.now()));
+    }
+
 
 
 }
