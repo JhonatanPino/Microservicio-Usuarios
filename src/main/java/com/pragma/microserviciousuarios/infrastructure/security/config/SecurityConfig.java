@@ -4,6 +4,8 @@ import com.pragma.microserviciousuarios.infrastructure.adapter.persistence.JwtPr
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,13 +15,12 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable())
+        http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/seller/**").hasRole("SELLER")
-                        .requestMatchers("/client/**").hasRole("CLIENT")
+                        .requestMatchers("/api/v1/users/**").permitAll()
+                        .requestMatchers("/api/v1/homes/**").permitAll() // Permitir acceso sin autenticación
                         .anyRequest().authenticated())
-                .formLogin(form -> form.permitAll());
+                .formLogin(AbstractAuthenticationFilterConfigurer::permitAll);
         return http.build();
     }
 
